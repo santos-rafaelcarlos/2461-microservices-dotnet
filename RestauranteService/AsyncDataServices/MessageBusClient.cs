@@ -1,46 +1,42 @@
-using RabbitMQ.Client;
-using RestauranteService.Dtos;
 using System.Text;
 using System.Text.Json;
+using RabbitMQ.Client;
+using RestauranteService.Dtos;
 
-namespace RestauranteService.AsyncDataServices
-{
-    public class MessageBusClient : IMessageBusClient
-    {
+namespace RestauranteService.AsyncDataServices {
+    public class MessageBusClient : IMessageBusClient {
         private readonly IConfiguration _configuration;
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        public MessageBusClient(IConfiguration configuration)
-        {
+        public MessageBusClient (IConfiguration configuration) {
             _configuration = configuration;
-            _connection = new ConnectionFactory() { HostName = "localhost", Port = 8002 }.CreateConnection();
-            _channel = _connection.CreateModel();
-            _channel.ExchangeDeclare(exchange: "trigger", type: ExchangeType.Fanout);
+            _connection = new ConnectionFactory () { 
+                HostName = _configuration["RabbitMqHost"], 
+                Port = Int32.Parse (_configuration["RabbitMqPort"])
+             }.CreateConnection ();
+            _channel = _connection.CreateModel ();
+            _channel.ExchangeDeclare (exchange: "trigger", type : ExchangeType.Fanout);
         }
 
-        public void PublishRestaurante(RestaurantePublishedDto restaurantePublishedDto)
-        {
-            var message = JsonSerializer.Serialize(restaurantePublishedDto);
-            EnviaMensagem(message);
+        public void PublishRestaurante (RestaurantePublishedDto restaurantePublishedDto) {
+            var message = JsonSerializer.Serialize (restaurantePublishedDto);
+            EnviaMensagem (message);
         }
 
-        private void EnviaMensagem(string mensagem)
-        {
-            var body = Encoding.UTF8.GetBytes(mensagem);
+        private void EnviaMensagem (string mensagem) {
+            var body = Encoding.UTF8.GetBytes (mensagem);
 
-            _channel.BasicPublish(exchange: "trigger",
-                            routingKey: "",
-                            basicProperties: null,
-                            body: body);
+            _channel.BasicPublish (exchange: "trigger",
+                routingKey: "",
+                basicProperties : null,
+                body : body);
         }
 
-        public void Dispose()
-        {
-            if (_channel.IsOpen)
-            {
-                _channel.Close();
-                _connection.Close();
+        public void Dispose () {
+            if (_channel.IsOpen) {
+                _channel.Close ();
+                _connection.Close ();
             }
         }
     }

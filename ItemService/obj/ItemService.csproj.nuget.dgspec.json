@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\daniel.mastub\\aluramicro\\ItemService\\ItemService.csproj": {}
+    "C:\\Users\\rcsantos\\source\\repos\\Microserviços.net\\2461-microservices-dotnet\\ItemService\\ItemService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\daniel.mastub\\aluramicro\\ItemService\\ItemService.csproj": {
+    "C:\\Users\\rcsantos\\source\\repos\\Microserviços.net\\2461-microservices-dotnet\\ItemService\\ItemService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\daniel.mastub\\aluramicro\\ItemService\\ItemService.csproj",
+        "projectUniqueName": "C:\\Users\\rcsantos\\source\\repos\\Microserviços.net\\2461-microservices-dotnet\\ItemService\\ItemService.csproj",
         "projectName": "ItemService",
-        "projectPath": "C:\\Users\\daniel.mastub\\aluramicro\\ItemService\\ItemService.csproj",
-        "packagesPath": "C:\\Users\\daniel.mastub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\daniel.mastub\\aluramicro\\ItemService\\obj\\",
+        "projectPath": "C:\\Users\\rcsantos\\source\\repos\\Microserviços.net\\2461-microservices-dotnet\\ItemService\\ItemService.csproj",
+        "packagesPath": "C:\\Users\\rcsantos\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rcsantos\\source\\repos\\Microserviços.net\\2461-microservices-dotnet\\ItemService\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\daniel.mastub\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rcsantos\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +76,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -85,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

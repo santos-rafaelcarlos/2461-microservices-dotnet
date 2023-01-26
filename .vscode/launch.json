@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Item Service",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ItemService/bin/Debug/net6.0/ItemService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ItemService",
+            "stopAtEntry": false,            
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+        },
+        {
+            "name": "Restaurante Service",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/RestauranteService/bin/Debug/net6.0/RestauranteService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/RestauranteService",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Iniciar Solution",
+            "configurations": [
+                "Item Service",
+                "Restaurante Service"
+            ],
+            "stopAll": true
+        }
+    ]
+}

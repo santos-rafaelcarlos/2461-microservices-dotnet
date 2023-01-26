@@ -1,0 +1,53 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  mysql-svc:
+    container_name: mysql-svc
+    image: mysql:8.0
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: db1234
+      MYSQL_DATABASE: restaurantedb 
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - 3310:3306
+    networks:
+      - minharede-mcs
+  
+  rabbitmq-svc:
+    container_name: rabbitmq-svc
+    hostname: rabbitmq-svc
+    image: rabbitmq:3
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - minharede-mcs
+  
+  item-svc:
+    container_name: item-svc
+    depends_on:
+      - rabbitmq-svc
+    image: r4f4carlos/itemservice:1.4
+    ports:
+      - 8080:5001
+    networks:
+      - minharede-mcs
+
+  restaurante-svc:
+    container_name: restaurante-svc
+    depends_on:
+      - mysql-svc
+    image: r4f4carlos/restauranteservice:1.5
+    ports:
+      - 8081:5101
+    networks:
+      - minharede-mcs
+
+networks:
+  minharede-mcs:
+   driver: bridge 
